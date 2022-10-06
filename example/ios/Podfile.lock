@@ -1,28 +1,39 @@
 PODS:
-  - crisp (0.0.1):
-    - Flutter
   - Flutter (1.0.0)
-  - webview_flutter (0.0.1):
+  - flutter_inappwebview (0.0.1):
+    - Flutter
+    - flutter_inappwebview/Core (= 0.0.1)
+    - OrderedSet (~> 5.0)
+  - flutter_inappwebview/Core (0.0.1):
+    - Flutter
+    - OrderedSet (~> 5.0)
+  - OrderedSet (5.0.0)
+  - url_launcher (0.0.1):
     - Flutter
 
 DEPENDENCIES:
-  - crisp (from `.symlinks/plugins/crisp/ios`)
   - Flutter (from `Flutter`)
-  - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
+  - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
+  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+
+SPEC REPOS:
+  trunk:
+    - OrderedSet
 
 EXTERNAL SOURCES:
-  crisp:
-    :path: ".symlinks/plugins/crisp/ios"
   Flutter:
     :path: Flutter
-  webview_flutter:
-    :path: ".symlinks/plugins/webview_flutter/ios"
+  flutter_inappwebview:
+    :path: ".symlinks/plugins/flutter_inappwebview/ios"
+  url_launcher:
+    :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
-  crisp: 31665a818a3b0231a343d5a0d617a41d63b09646
-  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  webview_flutter: d2b4d6c66968ad042ad94cbb791f5b72b4678a96
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
+  OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
+  url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
-PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
+PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.11.3

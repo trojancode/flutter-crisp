@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +32,8 @@ class CrispView extends StatefulWidget {
   final bool clearCache;
   final void Function(String url)? onLinkPressed;
 
-  ///Set to true to make the background of the WebView transparent. 
-  ///If your app has a dark theme, 
+  ///Set to true to make the background of the WebView transparent.
+  ///If your app has a dark theme,
   ///this can prevent a white flash on initialization. The default value is false.
   final bool transparentBackground;
   @override
@@ -109,6 +111,23 @@ class _CrispViewState extends State<CrispView> {
         var uri = navigationAction.request.url;
         var url = uri.toString();
 
+        if (uri?.host == "superr.crisp.help") {
+          log("crisp help found");
+          List<String> textlist = url.split('/')[6].split('-');
+
+          textlist.removeLast();
+
+          String titlefromurl = textlist.join(" ");
+
+          showDialog(
+            context: context,
+            builder: (context) {
+              return ArticleView(titlefromurl: titlefromurl, url: url);
+            },
+          );
+          return NavigationActionPolicy.CANCEL;
+        }
+
         if (uri?.host != 'go.crisp.chat') {
           if ([
             "http",
@@ -134,6 +153,87 @@ class _CrispViewState extends State<CrispView> {
 
         return NavigationActionPolicy.ALLOW;
       },
+    );
+  }
+}
+
+class ArticleView extends StatefulWidget {
+  const ArticleView({
+    Key? key,
+    required this.titlefromurl,
+    required this.url,
+  }) : super(key: key);
+
+  final String titlefromurl;
+  final String url;
+
+  @override
+  State<ArticleView> createState() => _ArticleViewState();
+}
+
+class _ArticleViewState extends State<ArticleView> {
+  bool isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          children: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Row(
+                children: [Icon(Icons.close), Text("Close Article")],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                widget.titlefromurl,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium!
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+            ),
+            isLoading ? LinearProgressIndicator() : Container(),
+            Expanded(
+              // height: MediaQuery.of(context).size.height - 150,
+              // constraints: BoxConstraints(
+              //     maxHeight: MediaQuery.of(context).size.height - 160),
+              child: InAppWebView(
+                onWebViewCreated: (InAppWebViewController controller) {
+                  //                         _webViewControllerarticle = controller;
+                  // InAppWebViewController? _webViewControllerarticle;
+                  setState(() {
+                    isLoading = true;
+                  });
+                },
+                // onLoadStop: (InAppWebViewController controller,
+                //     Uri? url) async {
+                //   _webViewController?.evaluateJavascript(
+                //       source: _javascriptString!);
+                // },
+                onLoadStart: (controller, url) {
+                  setState(() {
+                    isLoading = true;
+                  });
+                },
+                onLoadStop: (controller, url) {
+                  setState(() {
+                    isLoading = false;
+                  });
+                },
+                initialUrlRequest:
+                    URLRequest(url: Uri.parse(widget.url + '/reader')),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -85,6 +85,10 @@ class CrispMain {
     );
   }
 
+  setTrigger(String text) {
+    appendScript("window.\$crisp.push([\"do\", \"trigger:run\", [\"$text\"]])");
+  }
+
   void appendScript(String script) {
     commands.add(script);
   }

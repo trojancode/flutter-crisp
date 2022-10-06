@@ -16,21 +16,21 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     crispMain = CrispMain(
-      websiteId: 'WEBSITE_ID',
-      locale: 'pt-br',
+      websiteId: '5cb32754-d32f-407a-ac56-5e9d81f7477b',
+      locale: 'en',
     );
 
     crispMain.register(
       user: CrispUser(
         email: "leo@provider.com",
-        avatar: 'https://avatars2.githubusercontent.com/u/16270189?s=200&v=4',
+        // avatar: 'https://avatars2.githubusercontent.com/u/16270189?s=200&v=4',
         nickname: "João Cardoso",
         phone: "5511987654321",
       ),
     );
 
-    crispMain.setMessage("Hello world");
-
+    // crispMain.setMessage("Hello world");
+    crispMain.setTrigger("new-trigger");
     crispMain.setSessionData({
       "order_id": "111",
       "app_version": "0.1.1",
@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: CrispView(
           crispMain: crispMain,
-          clearCache: false,
+          clearCache: true,
         ),
       ),
     );
