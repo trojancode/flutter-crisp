@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
     );
 
     // crispMain.setMessage("Hello world");
-    crispMain.setTrigger("new-trigger");
+    crispMain.setTrigger("new-trigger-1");
     crispMain.setSessionData({
       "order_id": "111",
       "app_version": "0.1.1",
