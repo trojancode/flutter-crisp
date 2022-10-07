@@ -112,7 +112,7 @@ class _CrispViewState extends State<CrispView> {
         var url = uri.toString();
 
         if (uri?.host == "superr.crisp.help") {
-          log("crisp help found");
+          // log("crisp help found ${url}");
           List<String> textlist = url.split('/')[6].split('-');
 
           textlist.removeLast();

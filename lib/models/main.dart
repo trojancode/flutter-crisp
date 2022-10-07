@@ -89,6 +89,16 @@ class CrispMain {
     appendScript("window.\$crisp.push([\"do\", \"trigger:run\", [\"$text\"]])");
   }
 
+  showArticle(String articleId) {
+    appendScript(
+        "window.\$crisp.push([\"do\", \"helpdesk:article:open\", [\"en\",\"$articleId\"]])");
+  }
+
+  sendMessage(String text) {
+    appendScript(
+        "window.\$crisp.push([\"do\", \"message:show\", [\"text\",\"$text\"]])");
+  }
+
   void appendScript(String script) {
     commands.add(script);
   }

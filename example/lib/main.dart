@@ -22,19 +22,23 @@ class _MyAppState extends State<MyApp> {
 
     crispMain.register(
       user: CrispUser(
-        email: "leo@provider.com",
+        email: "leo1@provider.com",
         // avatar: 'https://avatars2.githubusercontent.com/u/16270189?s=200&v=4',
-        nickname: "João Cardoso",
-        phone: "5511987654321",
+        nickname: "João Cardoso1",
+        phone: "5511987654311",
       ),
     );
+    // crispMain.sendMessage("Are you stuck at home page?");
+    // crispMain.sendMessage(
+    //     "See how to pair a childs device \\n\\ https://superr.crisp.help/en/article/how-to-pair-a-childs-device-1n8b1s9");
 
     // crispMain.setMessage("Hello world");
-    crispMain.setTrigger("new-trigger-1");
-    crispMain.setSessionData({
-      "order_id": "111",
-      "app_version": "0.1.1",
-    });
+    // crispMain.showArticle("how-to-pair-a-childs-device-1n8b1s9");
+    crispMain.setTrigger("new-trigger");
+    // crispMain.setSessionData({
+    //   "order_id": "111",
+    //   "app_version": "0.1.1",
+    // });
   }
 
   @override
@@ -43,6 +47,13 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Your brand'),
+          // actions: [
+          //   IconButton(
+          //       onPressed: () {
+          //         crispMain.sendMessage("appp bar button detected");
+          //       },
+          //       icon: Icon(Icons.send))
+          // ],
         ),
         body: CrispView(
           crispMain: crispMain,
